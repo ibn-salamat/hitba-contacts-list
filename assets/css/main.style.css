@@ -1,0 +1,25 @@
+body {
+    padding: 15px 20px
+}
+
+.user {
+    border-top: 2px solid rgb(84, 84, 84);
+    padding: 15px
+}
+
+#pagination{
+    margin-bottom: 15px;
+}
+
+.page-btn {
+    cursor: pointer;
+    margin: 0 3px;
+    outline: none;
+    border: none;
+    font-weight: bold;
+    padding: 5px 7px;
+}
+.page-btn.active {
+    background: rgb(10, 140, 196);
+    color: white;
+}
