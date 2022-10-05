@@ -1,17 +1,20 @@
 let contacts = [];
 let pageSize = 0;
 let currentPage = 0;
+let totalCount = 0;
 
 async function getContacta(params = { page: 0 }){
     const { page } = params;
     
     try {
-        const res = await fetch(`https://api.hitba.io/main/landing_order?page_size=10&page=${page}`);
+        const res = await fetch(`https://api.hitba.io/main/landing_order?page_size=10&page=${page}&with_total_count=1`);
         const data = await res.json()
 
         if(data.results){
             contacts = data.results;
             pageSize = data.page_size
+            totalCount = data.total_count
+
         }
     } catch (error) {
         alert("Something went wrong. Call frontend dev")
@@ -21,6 +24,7 @@ async function getContacta(params = { page: 0 }){
 async function render(params = { page: 0 }){
     const contacts_list = document.querySelector("#contacts_list");
     const pagination = document.querySelector("#pagination");
+    const sumContacts = document.querySelector("#sum_contacts")
 
     currentPage = params.page;
 
@@ -64,6 +68,9 @@ async function render(params = { page: 0 }){
         }
         pagination.innerHTML = content;
     }
+
+    // sumContacts
+    sumContacts.textContent = `(${totalCount})`
         
 }
 
